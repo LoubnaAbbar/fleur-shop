@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Maison des Fleurs — Boutique Florale</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #faf6f0;
+  --cream2: #f3ede3;
+  --cream3: #e8dfd2;
+  --brown: #5c4033;
+  --brown-light: #8b6355;
+  --rose: #c97d6e;
+  --rose-light: #e8b4a8;
+  --rose-pale: #f5e6e2;
+  --green: #4a6741;
+  --green-light: #7a9e73;
+  --green-pale: #e8f0e6;
+  --text: #2d1f1a;
+  --muted: #7a6560;
+  --border: rgba(92,64,51,0.12);
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Jost', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 600px 400px at 10% 20%, rgba(201,125,110,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 300px at 90% 80%, rgba(74,103,65,0.06) 0%, transparent 70%);
+}
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,246,240,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+}
+.logo {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.45rem;
+  color: var(--brown);
+  letter-spacing: 0.3px;
+}
+.logo span { color: var(--rose); font-style: normal; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--brown); }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.cart-btn {
+  background: var(--brown);
+  color: var(--cream);
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, transform 0.15s;
+  display: flex; align-items: center; gap: 6px;
+}
+.cart-btn:hover { background: var(--brown-light); transform: translateY(-1px); }
+#cart-count {
+  background: var(--rose);
+  color: #fff;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.hero {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 88vh;
+  align-items: center;
+  padding: 4rem 3rem;
+  gap: 4rem;
+  max-width: 1200px; margin: 0 auto;
+}
+.hero-text { animation: fadeUp 0.8s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--rose);
+  margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--rose);
+  display: inline-block;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+  color: var(--brown);
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--rose);
+}
+.hero-desc {
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 300;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+  line-height: 1.9;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--brown);
+  color: var(--cream);
+  border: none;
+  cursor: pointer;
+  padding: 0.8rem 2rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+.btn-primary:hover {
+  background: var(--rose);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,125,110,0.3);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--brown);
+  border: 1px solid var(--brown);
+  cursor: pointer;
+  padding: 0.8rem 2rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: var(--cream2); }
+
+.hero-visual {
+  position: relative;
+  height: 500px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero-card {
+  position: absolute;
+  background: var(--cream2);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(92,64,51,0.1);
+}
+.hero-card-main {
+  width: 300px; height: 380px;
+  top: 0; left: 50%; transform: translateX(-50%);
+}
+.hero-card-sm1 {
+  width: 130px; height: 150px;
+  bottom: 20px; left: 0;
+}
+.hero-card-sm2 {
+  width: 130px; height: 150px;
+  bottom: 20px; right: 0;
+}
+.float-badge {
+  position: absolute;
+  top: 60px; right: 0;
+  background: var(--rose-pale);
+  border: 1px solid var(--rose-light);
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  font-size: 0.78rem;
+  color: var(--rose);
+  font-weight: 500;
+}
+.hero-card img,
+.product-img img,
+.cart-item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+section { position: relative; z-index: 1; }
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-header .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--green);
+  margin-bottom: 0.75rem;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 600;
+  color: var(--brown);
+  letter-spacing: -0.3px;
+}
+.section-header h2 em { font-style: italic; color: var(--rose); }
+
+.categories {
+  padding: 4rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.cat-card {
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.cat-card:hover { background: var(--rose-pale); border-color: var(--rose-light); transform: translateY(-4px); }
+.cat-card.active { background: var(--brown); color: var(--cream); border-color: var(--brown); }
+.cat-card.active .cat-label { color: var(--cream); }
+.cat-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.cat-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--brown);
+}
+
+.products {
+  padding: 2rem 3rem 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.75rem;
+}
+.product-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+}
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(92,64,51,0.12); }
+.product-img {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+.product-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.product-badge.promo { background: var(--rose); }
+.product-info { padding: 1.25rem; }
+.product-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 0.3rem;
+}
+.product-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-price {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--brown);
+  font-family: var(--font-display);
+}
+.add-btn {
+  background: var(--brown);
+  color: var(--cream);
+  border: none;
+  cursor: pointer;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+}
+.add-btn:hover { background: var(--rose); transform: scale(1.1); }
+
+.banner {
+  background: var(--green);
+  color: #fff;
+  margin: 2rem 3rem;
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem;
+}
+.banner h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.banner p { opacity: 0.8; font-weight: 300; font-size: 0.95rem; }
+.banner-icon { font-size: 4rem; opacity: 0.6; }
+.btn-white {
+  background: #fff;
+  color: var(--green);
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.btn-white:hover { background: var(--cream2); transform: translateY(-1px); }
+
+footer {
+  background: var(--brown);
+  color: rgba(250,246,240,0.7);
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  position: relative; z-index: 1;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+footer p { font-size: 0.85rem; line-height: 1.8; }
+.footer-col h4 {
+  color: var(--cream);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { font-size: 0.85rem; margin-bottom: 0.5rem; cursor: pointer; }
+.footer-col li:hover { color: var(--rose-light); }
+.footer-bottom {
+  background: rgba(0,0,0,0.2);
+  text-align: center;
+  padding: 1rem 3rem;
+  font-size: 0.78rem;
+  color: rgba(250,246,240,0.4);
+  position: relative; z-index: 1;
+}
+
+#cart-drawer {
+  position: fixed; top: 0; right: -420px; height: 100vh;
+  width: 400px; z-index: 300;
+  background: var(--cream);
+  border-left: 1px solid var(--border);
+  box-shadow: -12px 0 40px rgba(92,64,51,0.1);
+  display: flex; flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+#cart-drawer.open { right: 0; }
+.cart-overlay {
+  position: fixed; inset: 0; z-index: 299;
+  background: rgba(45,31,26,0.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.cart-overlay.open { opacity: 1; pointer-events: all; }
+.cart-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cart-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--brown);
+}
+.close-cart {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--muted);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.close-cart:hover { background: var(--cream2); }
+#cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+.cart-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.cart-item-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: block;
+}
+.cart-item-info { flex: 1; }
+.cart-item-info h4 { font-size: 0.9rem; font-weight: 500; color: var(--brown); }
+.cart-item-info span { font-size: 0.8rem; color: var(--muted); }
+.cart-item-price { font-weight: 600; color: var(--brown); font-size: 0.95rem; }
+.remove-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.remove-item:hover { color: var(--rose); }
+.cart-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.cart-empty .empty-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+.cart-footer { padding: 1.5rem; border-top: 1px solid var(--border); }
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--brown);
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+}
+.checkout-btn {
+  width: 100%;
+  background: var(--brown);
+  color: var(--cream);
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.checkout-btn:hover { background: var(--rose); }
+
+#chat-toggle {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--rose);
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 6px 28px rgba(201,125,110,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#chat-toggle:hover { transform: scale(1.08); box-shadow: 0 10px 36px rgba(201,125,110,0.6); }
+
+#chat-window {
+  position: fixed; bottom: 5.5rem; right: 2rem; z-index: 199;
+  width: 370px; max-height: 540px;
+  display: flex; flex-direction: column;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: 0 20px 60px rgba(92,64,51,0.18);
+  transform: scale(0.9) translateY(10px);
+  opacity: 0; pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
+  overflow: hidden;
+}
+#chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+
+.chat-header {
+  background: var(--rose);
+  color: #fff;
+  padding: 1rem 1.25rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.chat-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.chat-header-info h4 { font-size: 0.92rem; font-weight: 600; }
+.chat-header-info small { opacity: 0.8; font-size: 0.75rem; }
+.chat-close-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.1rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.chat-close-btn:hover { opacity: 1; }
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex; flex-direction: column; gap: 0.65rem;
+  background: var(--cream);
+}
+.msg {
+  max-width: 82%;
+  padding: 0.65rem 1rem;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  word-break: break-word;
+  animation: msgIn 0.2s ease;
+}
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.msg.bot {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  color: var(--text);
+}
+.msg.user {
+  background: var(--rose);
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  width: fit-content;
+}
+.typing span {
+  width: 6px; height: 6px;
+  background: var(--rose-light);
+  border-radius: 50%;
+  display: block;
+  animation: bounce 1.2s infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+  0%,60%,100% { transform: translateY(0); }
+  30% { transform: translateY(-5px); }
+}
+.chat-suggestions {
+  padding: 0.5rem 1rem;
+  display: flex; flex-wrap: wrap; gap: 6px;
+  background: var(--cream);
+  border-top: 1px solid var(--border);
+}
+.suggestion-chip {
+  background: var(--rose-pale);
+  color: var(--rose);
+  border: 1px solid var(--rose-light);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+}
+.suggestion-chip:hover { background: var(--rose); color: #fff; border-color: var(--rose); }
+
+.chat-input-area {
+  padding: 0.85rem;
+  border-top: 1px solid var(--border);
+  display: flex; gap: 8px; align-items: flex-end;
+  background: var(--cream);
+}
+#chat-input {
+  flex: 1;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  padding: 0.6rem 0.9rem;
+  resize: none;
+  outline: none;
+  max-height: 90px;
+  line-height: 1.5;
+  transition: border-color 0.2s;
+}
+#chat-input:focus { border-color: var(--rose); }
+#chat-input::placeholder { color: var(--muted); }
+#chat-send {
+  background: var(--rose);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: opacity 0.2s, transform 0.15s;
+}
+#chat-send:hover { opacity: 0.88; transform: scale(1.05); }
+#chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+#toast {
+  position: fixed; bottom: 6.5rem; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--green);
+  color: #fff;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  z-index: 500;
+  white-space: nowrap;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 1.25rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding: 6rem 1.5rem 3rem; }
+  .hero-visual { display: none; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .categories, .products { padding: 2rem 1.5rem; }
+  .banner { flex-direction: column; margin: 2rem 1.5rem; text-align: center; }
+  .banner-icon { display: none; }
+  footer { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.5rem; }
+  #chat-window { width: calc(100vw - 2rem); right: 1rem; }
+  #chat-toggle { bottom: 1.25rem; right: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">La Maison <span>des Fleurs</span></div>
+  <ul class="nav-links">
+    <li><a href="#boutique">Boutique</a></li>
+    <li><a href="#categories">Collections</a></li>
+    <li><a href="#">Livraison</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Panier <span id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Livraison à Paris & IDF</p>
+    <h1>Fleurs fraîches,<br>émotions <em>infinies</em></h1>
+    <p class="hero-desc">
+      Des compositions florales artisanales créées avec passion. Chaque bouquet raconte une histoire unique, cultivée avec amour pour vos moments précieux.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('boutique').scrollIntoView({behavior:'smooth'})">
+        Découvrir la boutique
+      </button>
+      <button class="btn-outline" onclick="openChat()">💬 Conseil personnalisé</button>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card hero-card-main">
+      <img src="/images/hero-main.avif" alt="Bouquet floral principal">
+    </div>
+    <div class="hero-card hero-card-sm1">
+      <img src="/images/hero-small-1.avif" alt="Composition florale">
+    </div>
+    <div class="hero-card hero-card-sm2">
+      <img src="/images/hero-small-2.avif" alt="Fleurs délicates">
+    </div>
+    <div class="float-badge">🚚 Livraison J+1</div>
+  </div>
+</section>
+
+<section class="categories" id="categories">
+  <div class="section-header">
+    <p class="eyebrow">Explorer</p>
+    <h2>Nos <em>collections</em></h2>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card active" onclick="filterProducts('all', this)">
+      <span class="cat-icon">🌸</span>
+      <span class="cat-label">Tout voir</span>
+    </div>
+    <div class="cat-card" onclick="filterProducts('bouquet', this)">
+      <span class="cat-icon">💐</span>
+      <span class="cat-label">Bouquets</span>
+    </div>
+    <div class="cat-card" onclick="filterProducts('composition', this)">
+      <span class="cat-icon">🪴</span>
+      <span class="cat-label">Compositions</span>
+    </div>
+    <div class="cat-card" onclick="filterProducts('plante', this)">
+      <span class="cat-icon">🌿</span>
+      <span class="cat-label">Plantes</span>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="boutique">
+  <div class="products-grid" id="products-grid"></div>
+</section>
+
+<div class="banner">
+  <div>
+    <h3>🌿 Abonnement floral mensuel</h3>
+    <p>Recevez chaque mois une composition unique, créée par nos fleuristes. Livraison offerte.</p>
+  </div>
+  <span class="banner-icon">🌺</span>
+  <button class="btn-white" onclick="openChat()">En savoir plus</button>
+</div>
+
+<footer>
+  <div>
+    <p class="footer-logo">La Maison des Fleurs</p>
+    <p>Fleuriste artisanal depuis 1992. Nous créons des bouquets avec passion et expertise pour tous vos moments importants.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Boutique</h4>
+    <ul>
+      <li>Bouquets</li>
+      <li>Compositions</li>
+      <li>Plantes</li>
+      <li>Abonnements</li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Infos</h4>
+    <ul>
+      <li>Livraison</li>
+      <li>Retours</li>
+      <li>CGV</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">© 2025 La Maison des Fleurs — Fait avec ❤️ et des pétales</div>
+
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div id="cart-drawer">
+  <div class="cart-header">
+    <h3>🛒 Mon panier</h3>
+    <button class="close-cart" onclick="toggleCart()">✕</button>
+  </div>
+  <div id="cart-items">
+    <div class="cart-empty">
+      <span class="empty-icon">🌸</span>
+      Votre panier est vide.<br>Ajoutez de belles fleurs !
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cart-total">0,00 €</span>
+    </div>
+    <button class="checkout-btn">Passer commande →</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<button id="chat-toggle" onclick="toggleChat()" title="Assistant floral">🌸</button>
+
+<div id="chat-window">
+  <div class="chat-header">
+    <div class="chat-avatar">🌺</div>
+    <div class="chat-header-info">
+      <h4>Flora — Conseillère florale</h4>
+      <small>IA · Répond instantanément</small>
+    </div>
+    <button class="chat-close-btn" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div id="chat-messages">
+    <div class="msg bot">
+      Bonjour et bienvenue ! 🌸 Je suis Flora, votre conseillère florale. Je peux vous aider à choisir le bouquet parfait ou répondre à toutes vos questions. Comment puis-je vous aider ?
+    </div>
+  </div>
+
+  <div class="chat-suggestions">
+    <button class="suggestion-chip" onclick="sendSuggestion('Quel bouquet pour un anniversaire ?')">🎂 Anniversaire</button>
+    <button class="suggestion-chip" onclick="sendSuggestion('Je cherche un cadeau romantique avec des fleurs')">❤️ Romantique</button>
+    <button class="suggestion-chip" onclick="sendSuggestion('Quels sont vos délais de livraison ?')">🚚 Livraison</button>
+  </div>
+
+  <div class="chat-input-area">
+    <textarea id="chat-input" rows="1" placeholder="Posez votre question…"
+      onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button id="chat-send" onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<script>
+const products = [
+  { id: 1, name: "Bouquet Romantique", desc: "Roses rouges et pivoines, un classique intemporel.", price: 45, image: "/images/romantique.avif", category: "bouquet", badge: "Bestseller" },
+  { id: 2, name: "Collection Printemps", desc: "Tulipes, jonquilles et mimosa — la fraîcheur en bouquet.", price: 35, image: "/images/printemps.avif", category: "bouquet", badge: "Nouveau" },
+  { id: 3, name: "Orchidée Blanche", desc: "Élégance pure, parfaite pour décorer votre intérieur.", price: 55, image: "/images/orchidee.avif", category: "composition", badge: null },
+  { id: 4, name: "Bouquet Champêtre", desc: "Lavande, tournesols et bleuets des champs.", price: 38, image: "/images/champetre.avif", category: "bouquet", badge: null },
+  { id: 5, name: "Composition Zen", desc: "Bambou, mousse et pierres — une harmonie apaisante.", price: 62, image: "/images/zen.avif", category: "composition", badge: null },
+  { id: 6, name: "Ficus Lyrata", desc: "La star des plantes d'intérieur, port élégant.", price: 48, image: "/images/ficus.avif", category: "plante", badge: null },
+  { id: 7, name: "Bouquet Pastel", desc: "Pivoines blanches, roses poudré et eucalyptus.", price: 42, image: "/images/pastel.avif", category: "bouquet", badge: "Nouveau" }
+];
+
+let cart = [];
+let chatOpen = false;
+let chatLoading = false;
+const chatHistory = [];
+
+function renderProducts(filter = 'all') {
+  const grid = document.getElementById('products-grid');
+  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card">
+      <div class="product-img" style="background:${getBg(p.category)}">
+        ${p.badge ? `<div class="product-badge ${p.badge === 'Promo' ? 'promo' : ''}">${p.badge}</div>` : ''}
+        <img src="${p.image}" alt="${p.name}">
+      </div>
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p class="product-desc">${p.desc}</p>
+        <div class="product-footer">
+          <span class="product-price">${p.price},00 €</span>
+          <button class="add-btn" onclick="addToCart(${p.id})" title="Ajouter au panier">+</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function getBg(cat) {
+  const bgs = { bouquet: '#f5e6e2', composition: '#e8f0e6', plante: '#e8f0e6' };
+  return bgs[cat] || '#f3ede3';
+}
+
+function filterProducts(cat, el) {
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts(cat);
+}
+
+function addToCart(id) {
+  const p = products.find(x => x.id === id);
+  const existing = cart.find(x => x.id === id);
+  if (existing) existing.qty++;
+  else cart.push({ ...p, qty: 1 });
+  updateCart();
+  showToast(`${p.name} ajouté au panier !`);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  updateCart();
+}
+
+function updateCart() {
+  const count = cart.reduce((s, x) => s + x.qty, 0);
+  document.getElementById('cart-count').textContent = count;
+
+  const total = cart.reduce((s, x) => s + x.price * x.qty, 0);
+  document.getElementById('cart-total').textContent = total.toFixed(2).replace('.', ',') + ' €';
+
+  const el = document.getElementById('cart-items');
+  if (cart.length === 0) {
+    el.innerHTML = '<div class="cart-empty"><span class="empty-icon">🌸</span>Votre panier est vide.<br>Ajoutez de belles fleurs !</div>';
+  } else {
+    el.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <span class="cart-item-icon">
+          <img src="${item.image}" alt="${item.name}">
+        </span>
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <span>Qté : ${item.qty}</span>
+        </div>
+        <span class="cart-item-price">${(item.price * item.qty).toFixed(2).replace('.', ',')} €</span>
+        <button class="remove-item" onclick="removeFromCart(${item.id})">✕</button>
+      </div>
+    `).join('');
+  }
+}
+
+function toggleCart() {
+  document.getElementById('cart-drawer').classList.toggle('open');
+  document.getElementById('cart-overlay').classList.toggle('open');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chat-window').classList.toggle('open', chatOpen);
+  document.getElementById('chat-toggle').textContent = chatOpen ? '✕' : '🌸';
+  if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
+}
+
+function openChat() {
+  if (!chatOpen) toggleChat();
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 90) + 'px';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function sendSuggestion(text) {
+  document.getElementById('chat-input').value = text;
+  sendMessage();
+}
+
+function addMsg(text, role) {
+  const el = document.createElement('div');
+  el.className = 'msg ' + role;
+  el.textContent = text;
+  const msgs = document.getElementById('chat-messages');
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  const el = document.createElement('div');
+  el.className = 'typing';
+  el.id = 'typing';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  const msgs = document.getElementById('chat-messages');
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text || chatLoading) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+  chatLoading = true;
+  document.getElementById('chat-send').disabled = true;
+  document.querySelector('.chat-suggestions').style.display = 'none';
+
+  addMsg(text, 'user');
+  chatHistory.push({ role: 'user', content: text });
+  showTyping();
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: chatHistory })
+    });
+
+    const data = await res.json();
+    removeTyping();
+
+    if (!res.ok) {
+      addMsg(`Erreur API : ${data.error || 'erreur inconnue'}`, 'bot');
+      return;
+    }
+
+    const reply = data.reply;
+    if (!reply) {
+      addMsg(`Réponse vide du serveur. Détail : ${data.error || 'aucun détail'}`, 'bot');
+      return;
+    }
+
+    addMsg(reply, 'bot');
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    removeTyping();
+    addMsg(`Erreur réseau/JS : ${err.message}`, 'bot');
+  }
+
+  chatLoading = false;
+  document.getElementById('chat-send').disabled = false;
+  input.focus();
+}
+
+renderProducts();
+</script>
+</body>
+</html>

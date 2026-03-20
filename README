@@ -1,0 +1,6 @@
+# Lancement du projet
+
+1. Cloner le repo
+2. Ajouter une clé API OpenRouter dans un fichier `.env`
+3. Lancer le serveur avec `node server.js`
+4. Ouvrir `http://localhost:3000`
